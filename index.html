@@ -39,11 +39,6 @@
 			top: 25%;
 		}
 
-		.panel {
-			height: 100%;
-			width: 100%;
-		}
-
 		.shadow {
 			-webkit-box-shadow: 6px 6px 6px 0px rgba(0,0,0,0.3);
 			-moz-box-shadow: 6px 6px 6px 0px rgba(0,0,0,0.3);
@@ -70,12 +65,24 @@
 			right: 130px;
 		}
 
+		.F_IMG {
+			position: absolute; 
+			width: 100%; 
+			height: 100vh; 
+			background-size: cover;
+		}
+
+		.panel {
+			height: 150%;
+			width: 100%;
+		}
+
 		.B {
-			position:absolute; 
-			color:#fff; 
-			width:450px; 
-			left:calc(50% - 225px); 
-			top:50%; transform:translateY(-50%);
+			position: absolute; 
+			color: #fff; 
+			width: 450px; 
+			left: calc(50% - 225px); 
+			top: 50%; transform:translateY(-50%);
 			font-size: 18px;
 			line-height: 30px;
 			letter-spacing: 0.2em;
@@ -90,13 +97,20 @@
 			background-position: center center;
 		}
 
+		.BG_W {
+			position: absolute; 
+			width: 100%; 
+			height: 100%; 
+			background-color: #fff;
+		}
+
 		.dialogue {
-			top:110vh;
-			position:fixed; 
-			width:410px; 
-			padding:30px;
-			padding-right:5px;
-			background-color:#fdfffa;
+			top: 110vh;
+			position: fixed; 
+			width: 410px; 
+			padding: 30px;
+			padding-right: 5px;
+			background-color: #fdfffa;
 			z-index: 2;
 		}
 
@@ -127,10 +141,10 @@
 		}
 
 		svg text{
-		  font-size:14px;
+		  font-size: 14px;
 		  font-family: sans-serif;
 		  letter-spacing: 0.2em;
-		  color:#595757;
+		  color: #595757;
 		  text-anchor: middle;
 		}
 
@@ -147,9 +161,28 @@
 			color: #000;
 		}
 
-		video {
-			width: auto    !important;
-			height: 100%   !important;
+		.video-wrapper {
+			height: 100%;
+			text-align: center;
+			overflow: hidden;
+		}
+
+		.video-wrapper video {
+			object-fit: cover;
+		}
+
+		.imgs img {
+			margin-top:30px;
+		}
+
+		.panorama {
+			margin: 0 auto;
+			cursor: ew-resize;
+			width: 100%;
+			background-size: cover;
+			background-position: 50% 0;
+			z-index: 3;
+			transition: background-position 0.1s linear;
 		}
 
 	</style>
@@ -166,7 +199,7 @@
 	<script src="js/plugins/animation.gsap.min.js"></script>
 	<script src="js/plugins/debug.addIndicators.min.js"></script>
 </head>
-<body style="min-width: 1280px;">
+<body style="min-width: 1260px;">
 
 	<!-- Header and Navigation -->
 	<div style="position:fixed; top:8px; left:45px; z-index:10;">
@@ -198,7 +231,7 @@
 	</div>
 
 	<!-- Path Map -->
-	<div id="map" style="position:fixed; width:50%; hieght:100vh; z-index:2; float:left; opacity:0; text-align:center;">
+	<div id="map" style="position:fixed; width:50%; hieght:100vh; z-index:2; float:left; opacity:0; text-align:center; pointer-events: none;">
 		<div style="width:60%; display:inline-block;">
 			<svg viewBox="0 0 421.94135 582.27869" height="582.27869" width="421.94135" style="width:100%; height:auto;  padding-top:18vh; overflow:overlay;">
 	            <g id="bg_path" transform="matrix(1.3333333,0,0,-1.3333333,0,582.27867)">
@@ -270,9 +303,9 @@
 						<div class="b-lazy BG" data-src="img/map.png"></div>
 					</section>
 
-					<section id="p-4" class="panel" style="height:100%;overflow:hidden;">
-						<div style="position:absolute; width:100%; height:100%; background-color: #000; overflow:hidden;"></div>
-						<div style="position:absolute;">
+					<section id="p-4" class="panel" style="height:120%;overflow:hidden;">
+						<div style="position:absolute; width:100%; height:120%; background-color: #000; overflow:hidden;"></div>
+						<div class="video-wrapper" style="position:absolute;">
 							<video id="bgvid" style="transform: scale(1.2);">
 								<source src="video/walkin.mp4" type="video/mp4">
 							</video>
@@ -280,7 +313,7 @@
 					</section>
 					
 					<section id="p-5" class="panel" style="height:140%;">
-						<div style="position:absolute; width:100%; height:140%; background-color: #fff;"></div>
+						<div class="BG_W" style="height:140%;"></div>
 						<div style="width:50%; float:right; ">
 							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 180px; text-align:left;">
 								<ul class="bxslider">
@@ -308,7 +341,7 @@
 
 					<a id="p-7"></a>
 					<section class="panel">
-						<div style="position:absolute; width:100%; height:100vh; background-color: #fff;"></div>
+						<div class="BG_W" style="height:100%;"></div>
 						<div style="position:relative; width:50%; height:100vh; float:right; line-height:120vh; text-align:left;">
 							<div style="display:inline-block; width:450px; font-size:18px; letter-spacing:0.2em; 	line-height:30px;">
 								<p class="sourcehansans-tc-regular">最後一天特別焦躁，阿昌整個上午盯著觸控螢幕，忙著用無線電確認最後關閉管線的流程。在場裡工作不能抽煙，犯癮的時候他總是走到樓梯間看管線發呆，各種不同顏色的管線像纏繞的蟒蛇，他可以明確指出每條管線的作用，但他知道總有他看不到的東西。</p>
@@ -319,7 +352,7 @@
 					<a id="p-8"></a>
 					<div id="trigger4"></div>
 					<section class="panel">
-						<div class="b-lazy" data-src="img/8.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div class="b-lazy F_IMG" data-src="img/8.jpg"></div>
 						<div id="box4" class="dialogue FR shadow-3px">
 							<span class="fold"></span>
 							<p class="sourcehansans-tc-regular">去年初夏，氫氣外洩造成爆炸意外那天，他也是這樣站著。</p>
@@ -329,7 +362,7 @@
 					<a id="p-9"></a>
 					<div id="trigger5"></div>
 					<section class="panel">
-						<div class="b-lazy" data-src="img/9.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div class="b-lazy F_IMG" data-src="img/9.jpg"></div>
 						
 					</section>
 					<div id="box5" class="dialogue FL shadow-3px">
@@ -339,19 +372,18 @@
 
 					<a id="p-10"></a>
 					<section class="panel">
-						<div class="b-lazy" data-src="img/10.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div class="b-lazy F_IMG" data-src="img/10.jpg"></div>
 					</section>
 
 					<a id="p-10-2"></a>
 					<section class="panel">
-						<div class="b-lazy" data-src="img/10-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div class="b-lazy F_IMG" data-src="img/10-2.jpg"></div>
 					</section>
 
 					<a id="p-11"></a>
 					<div id="trigger6"></div>
 					<section class="panel">
-						<div class="b-lazy" data-src="img/11.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-
+						<div class="b-lazy F_IMG" data-src="img/11.jpg"></div>
 					</section>
 					<div id="box6" class="dialogue FR shadow-3px">
 						<span class="fold"></span>
@@ -360,26 +392,29 @@
 
 					<!-- 12_ML / 13_MF_section3 -->
 					<a id="p-12"></a>
-					<section class="panel" style="height:150%;">
-						<div style="position:absolute; width:100%; height:200%; background-color: #fff;"></div>
+					<section class="panel" style="height:180%;">
+						<div class="BG_W" style="height:200%;"></div>
 						<div style="width:50%; float:right; ">
 							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 180px; text-align:left;">
 								<ul class="bxslider">
-								  <li><img src="img/slider/084.jpg" title="在那個經濟起飛的時代，高廠就配備最先進的控制系統，即便20年後的今天也毫不遜色。(余志偉攝/報導者)" /></li>
-								  <li><img src="img/slider/087.jpg" title="高廠輝煌的年代，機器場房不停運轉，工人三班24小時輪班作業，作業現場人聲鼎沸，如今要關廠，當年盛況不再。(余志偉攝/報導者)" /></li>
-								  <li><img src="img/slider/091.jpg" title="牆上的工作班表還張貼著三班制的工作人員，而他們的首要任務現在已從生產作業變成停場作業。(余志偉攝/報導者)" /></li>
-								  <li><img src="img/slider/161.jpg" title="高廠先進的控制系統讓監控人員透過按鍵儀表就可以掌握整個工場的現況。(林聰勝攝/報導者)" /></li>
+								  <li><img src="img/slider/166.jpg" title="高廠擁有自己的消防隊，當年的配置裝備甚至可以匹敵地方政府的資源。(林聰勝攝/報導者)" /></li>
+								  <li><img src="img/slider/167.jpg" title="過去頂尖的裝備經過時間洗禮已不再光鮮亮麗，但它們曾經保護許多打火弟兄的生命。(林聰勝攝/報導者)" /></li>
+								  <li><img src="img/slider/169.jpg" title="隨著高廠關閉，消防隊也可能跟著裁撤，吊掛在架上的防火裝備也見證這一個歷史的過程。(林聰勝攝/報導者)" /></li>
 								</ul>
 							</div>
 							<div style="position:relative; text-align:left; margin-top:60px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
-								<p class="sourcehansans-tc-regular">他所在的第七硫磺工場是高雄煉油廠最後熄燈的工場，工作採輪班制，24小時都須有工人輪守。硫磺工場長年發出惡臭，讓後勁居民抗議，阿昌待在有冷氣的控制室裡，渾然不覺。阿昌去福利社買早餐時，遇到他的建教班老同學阿明，阿明所在的五輕工場，去年四月已停工，大部份人轉去大林廠，只剩下他一人留守，空空蕩蕩。</p>
+								<p class="sourcehansans-tc-regular">這些年他很少想起這個故事，以前有一個老工人，某天巡視時，突然無預警地全身燃燒起來，因為氫氣是隱形的惡魔，無色無味，看不到，聞不到，無法預防。氫氣外洩只有晚上看得到，像一蓬一蓬淡藍色的鬼火，阿昌想起那個畫面時還會不寒而慄，他感覺，那好像是殉職同事的魂魄。</p>
+							</div>
+							<div style="position:relative; text-align:left; margin-top:60px; width: calc(100% - 45px); font-size:18px; letter-spacing:0.2em;">
+								<img src="img/slider/069.jpg" style="max-width:100%;" />
+								<p style="font-size:14px;">作家楊清矗的父親曾經是高廠消防隊員，這裡雖然不是父親隸屬的小隊，但仍然讓楊清矗勾起許多對父親的記憶。(林聰勝攝/報導者)</p>
 							</div>
 						</div>
 					</section>
 
 					<a id="p-13"></a>
 					<section class="panel" style="height:150%;">
-						<div style="position:absolute; width:100%; height:150vh; background-color: #fff;"></div>
+						<div class="BG_W" style="height:150%;"></div>
 						<div style="position:relative; width:50%; height:100vh; float:right; line-height:120vh; text-align:left;">
 							<div style="display:inline-block; width:450px; font-size:18px; letter-spacing:0.2em; 	line-height:30px;">
 								<p class="sourcehansans-tc-regular">阿昌16、7歲讀建教班時在公用水處理廠工作、跟著輪班。雖然調了單位，但他還是習慣騎著腳踏車繞去看看，找老同學敘舊。以前公用水處理工場有個比游泳池還大的水池，同學們都會在這裡游泳。</p>
@@ -388,35 +423,279 @@
 					</section>
 
 					<section id="p-14" class="panel">
-						<div id="p14-2" class="b-lazy" data-src="img/14-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-						<div id="p14-1" class="b-lazy" data-src="img/14.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div id="p14-2" class="b-lazy F_IMG" data-src="img/14-2.jpg"></div>
+						<div id="p14-1" class="b-lazy F_IMG" data-src="img/14.jpg"></div>
 					</section>
-
 
 					<div id="box7" class="dialogue FL shadow-3px" style="position:fixed;">
 						<span class="fold"></span>
 						<p class="sourcehansans-tc-regular">民國60年代，他雲林鄉下的家還在燒柴，廠裡就有動力工廠，有巨大的鍋爐，將水暖化成蒸餾水，再提煉成實驗室所用的純水，以供煉油廠裡的精密機械使用。</p>
 					</div>
 
-					<section id="p-15" class="panel" style="height:100%;">
-						<div id="p15-2" class="b-lazy" data-src="img/15-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-						<div id="p15-1" class="b-lazy" data-src="img/15.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+					<section id="p-15" class="panel">
+						<div id="p15-2" class="b-lazy F_IMG" data-src="img/15-2.jpg"></div>
+						<div id="p15-1" class="b-lazy F_IMG" data-src="img/15.jpg"></div>
 					</section>
+
 					<div id="box8" class="dialogue FL shadow-3px" style="position:fixed;">
 						<span class="fold"></span>
 						<p class="sourcehansans-tc-regular">那幾乎是最好的青春年代，高廠裡的一切都讓阿昌大開眼界。</p>
 					</div>
 
-					<section id="p-16" class="panel" style="height:100%;">
-						<div id="p16-2" class="b-lazy" data-src="img/16-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-						<div id="p16-1" class="b-lazy" data-src="img/16.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+					<section id="p-16" class="panel">
+						<div id="p16-2" class="b-lazy F_IMG" data-src="img/16-2.jpg"></div>
+						<div id="p16-1" class="b-lazy F_IMG" data-src="img/16.jpg"></div>
 					</section>
 
 					<!-- 17_ML_section4 -->
-					<a id="p-17"></a>
-					<section class="panel">
-						<div style="position:absolute; width:100%; height:100vh; background-color: #fff;"></div>	
-						<b>17</b>
+					<section id="p-17" class="panel" style="height:150%;">
+						<div class="BG_W" style="height:200%;"></div>
+						<div style="width:50%; float:right; ">
+							<div class="sourcehansans-tc-regular" style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p>廠裡還有自己的水廠，不需要經過自來水公司提供，廠裡的水經過石灰沉澱，硬度比外面的水低，水質良好，用來做中油冰棒，吃起來就是和外面的不一樣。</p>
+								<p>阿昌回憶起從前的歲月，有苦也有甜，小時候家裡窮，以前在家能燒柴來洗澡，是非常奢侈的事。在這裡因為將動力工場鍋爐的蒸汽回收，工人們有源源不絕的熱水可以每天洗澡。用蒸氣來煮飯，不到十分鐘米就熟了，好像變魔術一樣，阿昌放假回雲林跟弟妹講，他們都覺得不可思議，像天堂一樣。</p>
+							</div>
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 60px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img class="b-lazy" src="img/slider/030.jpg" title="張金塗在高廠時當建教生及工人的老照片。(張金塗提供/余志偉翻攝)" /></li>
+								  <li><img class="b-lazy" src="img/slider/031.jpg" title="張金塗在高廠時當建教生及工人的老照片。(張金塗提供/余志偉翻攝)" /></li>
+								  <li><img class="b-lazy" src="img/slider/032.jpg" title="張金塗在高廠時當建教生及工人的老照片。(張金塗提供/余志偉翻攝)" /></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<a id="p-17-2"></a>
+					<section class="panel" style="height:250%;">
+						<div class="BG_W" style="height:250%;"></div>
+						<div style="position:relative; width:50%; height:250vh; float:right; text-align:left;">
+							<div style="position:relative; text-align:left; margin-top:30px; width: calc(100% - 45px); font-size:18px; letter-spacing:0.2em;">
+								<img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="img/slider/210.jpg" style="max-width:100%;" />
+								<p style="font-size:14px;">高廠西門內矗立的蔣介石銅像是目前少數還留存的銅像之一，如今成為威權時代的象徵。(林聰勝攝/報導者)</p>
+							</div>
+							<div style="position:relative; text-align:left; margin-top:60px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p class="sourcehansans-tc-regular">往宏南社區得經過西門，阿昌想起25年前，由於後勁居民在西門圍廠抗議，阿昌上班時都要繞一大段路，從北門還有新北門進來，當時他覺得好麻煩。出廠他特意回頭看了一下大門，不知道那些剽悍的抗爭者後來怎麼了。廠內還有一座蔣介石銅像，看起來比平常還高大，關廠後，這座威權時代的遺留，大概也要被拉倒了。</p>
+							</div>
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 60px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img src="img/slider/343.jpg" title="高廠西大門承載了許多歷史的記憶，它曾經是石化產業、經濟起飛的出口，也是後勁居民埋鍋造飯、抗爭汙染，導致高廠最後關廠的入口。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/9766.jpg" title="夜晚，工人們從高廠西大門下班，蔣介石的銅像矗立著，銅像背後的燃燒塔還噴發著烈焰，然而這樣的圖像很快會消失，隨著高廠關閉、隨著夜幕降臨隱沒。(林聰勝攝/報導者)" /></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-18" class="panel">
+						<div class="b-lazy BG" data-src="img/18.jpg"></div>
+					</section>
+					<div id="box9" class="dialogue FL shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">午餐時，阿昌不想去員工餐廳，想去宏南社區走走，也想帶一些高廠的麵包回去。</p>
+					</div>
+
+					<section id="p-19" class="panel">
+						<div class="b-lazy BG" data-src="img/19.jpg"></div>
+					</section>
+					<div id="box10" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">女兒愛吃，最後一天了，以後不知道要去哪裡買。</p>
+					</div>
+
+					<section id="p-20" class="panel">
+						<div id="p20-2" class="b-lazy F_IMG" data-src="img/20-2.jpg"></div>
+						<div id="p20-1" class="b-lazy F_IMG" data-src="img/20-1.jpg"></div>
+					</section>
+					<div id="box11" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">住在宏南社區的都是中油高級主管，網球場、高爾夫球場，應有盡有，綠樹成蔭。</p>
+					</div>
+
+					<section id="p-21" class="panel" style="height:140%;">
+						<div class="BG_W" style="height:140%;"></div>
+						<div style="width:50%; float:right; ">
+							<div class="sourcehansans-tc-regular" style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p>阿昌17歲念建教班的時候，追求年輕女工娟娟，那時參加高廠的籃球隊，娟娟常來場邊幫他加油。在運動場上沒有身分貴賤，阿昌的球技硬是比那些科長、經理好，常常一個漂亮的過人上籃，就可以抵得過他在工廠被使喚的委屈。</p>
+								<p>40年前，在貧瘠的高雄，有籃球場、保齡球場、溫水游泳池是很稀奇的事，外面的人連聽都沒聽過。阿昌在那幾年學會游泳，他還記得過年回家說給弟妹聽時，他們吃驚的樣子。</p>
+							</div>
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 60px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img src="img/slider/351.jpg" title="高廠員工宿舍區的棒壘球場。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/352.jpg" title="高廠員工宿舍區的游泳池。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/355.jpg" title="高廠員工宿舍區的溜冰場。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/394.jpg" title="高廠員工宿舍區的室內籃球場。(余志偉攝/報導者)" /></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-22" class="panel">
+						<div class="b-lazy BG" data-src="img/22.jpg"></div>
+					</section>
+					<div id="box12" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">高爾夫球場始終很神秘，阿昌心想，只要能走進去看看也好。</p>
+					</div>
+
+					<section id="p-23" class="panel">
+						<div class="b-lazy BG" data-src="img/23.jpg"></div>
+					</section>
+					<div id="box13" class="dialogue FL shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">但他知道那都是高官在打，去了難免要鞠躬哈腰，他領的薪水也實在付不起那些昂貴的球具。</p>
+					</div>
+
+					<section id="p-24" class="panel">
+						<div class="b-lazy BG" data-src="img/24.jpg"></div>
+					</section>
+
+					<section id="p-25" class="panel" style="height:140%;">
+						<div class="BG_W" style="height:140%;"></div>
+						<div style="width:50%; float:right; ">
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 180px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img src="img/slider/184.jpg" title="高廠宏南員工宿舍區綠樹成蔭、環境清優，居住品質相當良好。(林聰勝攝/報導者)" /></li>
+								  <li><img src="img/slider/345.jpg" title="高廠宏南員工宿舍戶戶有庭院，一間間房子就像小別墅一樣。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/349.jpg" title="高廠員工宿舍就緊鄰廠區，良好的居住品質與造成汙染的廠區形成對比。(余志偉攝/報導者)" /></li>
+								</ul>
+							</div>
+							<div style="position:relative; text-align:left; margin-top:60px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p class="sourcehansans-tc-regular">那些日子，阿昌往往跟同學借了摩托車，載娟娟到宏南的林蔭大道散步，一間一間房子都像小別墅一樣。</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-26" class="panel">
+						<div class="b-lazy BG" data-src="img/26.jpg"></div>
+					</section>
+					<div id="box14" class="dialogue FL shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">娟娟眼裡發光，但阿昌知道，以他這種基層工人，不可能住在這裡。</p>
+					</div>
+
+					<section id="p-27" class="panel">
+						<div class="b-lazy BG" data-src="img/27.jpg"></div>
+					</section>
+
+					<section id="p-28" class="panel" style="height:140%;">
+						<div class="BG_W" style="height:140%;"></div>
+						<div style="width:50%; float:right; ">
+							<div style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p class="sourcehansans-tc-regular">那以前在路上處處可見戴黃色安全帽的工人。安全帽顏色是區分用的，阿昌多待在辦公室，戴橘色安全帽，另外那些監造工人、維修工人戴黃色安全帽。戴藍色安全帽的廠商在不進原料後幾乎見不到了。倒是要關廠前，戴白色安全帽進來採訪的記者變多了，穿著高跟鞋的女記者穿梭在管線複雜的地區時，阿昌為她捏把冷汗，以前根本不可能讓閒雜人等進來。</p>
+							</div>
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 60px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img src="img/slider/023.jpg" title="曾經廠區內工人、包商、協力廠商川流不息，在啟動關廠計畫後，工場逐一停工，廠區人跡也大幅銳減。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/139.jpg" title="油槽區在過往是國防重地，甚至有保警戍守，如今因為高廠關閉才有機會一探究竟。(林聰勝攝/報導者)" /></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-29" class="panel">
+						<div id="p29-2" class="b-lazy F_IMG" data-src="img/29-2.jpg"></div>
+						<div id="p29-1" class="b-lazy F_IMG" data-src="img/29-1.jpg"></div>
+					</section>
+					<div id="box15" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">回硫磺工場的路上，阿昌幾乎見不到幾個人。</p>
+					</div>
+
+					<section id="p-30" class="panel">
+						<div id="p30-2" class="b-lazy F_IMG" data-src="img/30-2.jpg"></div>
+						<div id="p30-1" class="b-lazy F_IMG" data-src="img/30-1.jpg"></div>
+					</section>
+					<div id="box16" class="dialogue FL shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">樓起樓塌、灰飛湮滅。</p>
+					</div>
+
+					<section id="p-31" class="panel" style="height:300%;">
+						<div class="BG_W" style="height:300%;"></div>
+						<div style="width:50%; float:right; ">
+							<div style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p class="sourcehansans-tc-regular">回工場前，阿昌遇見老同學阿勇，他戴黃色安全帽，阿昌建教班畢業後去念技術學校，所以能在控制室工作。阿勇沒繼續升學，始終是第一線的工人。阿勇常跟他講第一線工人的命不值錢，歲末維修時，機具停工維修，讓黃帽工人進去油槽、管線裡清理，不時傳出一氧化碳或沼氣中毒事件，進去了就再也沒出來。</p>
+							</div>
+							<div class="imgs" style="position:relative; text-align:left; margin-top:30px; width: calc(100% - 45px); font-size:18px; letter-spacing:0.2em;">
+								<img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="img/slider/388.jpg" style="max-width:100%;" />
+								<img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="img/slider/385.jpg" style="max-width:100%;" />
+								<img class="b-lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="img/slider/386.jpg" style="max-width:100%;" />
+								<p style="font-size:14px;">監工葉天德(右)與許進興到高廠服務超過30年，現在高廠即將結束營運，他們感嘆萬千。(余志偉攝/報導者)</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-32" class="panel">
+						<div class="BG_W" style="height:140%;"></div>
+						<div style="position:relative; width:50%; height:100vh; float:right; line-height:120vh; text-align:left;">
+							<div class="sourcehansans-tc-regular" style="display:inline-block; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p>輪完最後一天的班，天微微暗，阿昌決定散步到半屏山的高台。他平常不是那麼容易感傷的人，但今天忽然想起很多老同學跟同事。</p>
+								<p>爬上高台，氣喘吁吁，阿昌沒有年輕時打籃球的肺活量。還在喘氣的同時，阿昌看到一幅熟悉的風景，像個360度環繞鏡頭，看見全景。這麼大的廠，人在裏頭像小螞蟻一樣，阿昌無法想像說停就停，讓他感到世事無常，沒有不會消失的東西。</p>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-33" class="panel" style="height:100%;">
+						<div class="b-lazy BG panorama" data-src="img/pano.jpg">
+							<div class="b-lazy" style="position:absolute; left:0px; top:50%; margin-top:-25px; z-index:3; width:101px; height:51px;" data-src="img/360_toLeft.png"></div>
+							<div class="b-lazy" style="position:absolute; right:0px; top:50%; margin-top:-25px; z-index:3; width:101px; height:51px;" data-src="img/360_toRight.png"></div>
+						</div>
+					</section>
+
+					<section id="p-34" class="panel">
+						<div class="BG_W" style="height:100%;"></div>
+						<b>34 MRT</b>
+					</section>
+
+					<section id="p-35" class="panel">
+						<div class="b-lazy BG" data-src="img/35.jpg"></div>
+					</section>
+					<div id="box17" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">這火光，對阿昌是人生的指引。</p>
+					</div>
+
+					<section id="p-36" class="panel">
+						<div class="b-lazy BG" data-src="img/36.jpg"></div>
+					</section>
+					<div id="box18" class="dialogue FR shadow-3px">
+						<span class="fold"></span>
+						<p class="sourcehansans-tc-regular">但在抗爭的那幾年，阿昌耳聞，燃燒塔對於居民，就像地獄的象徵。</p>
+					</div>
+
+					<section id="p-37" class="panel">
+						<div class="b-lazy BG" data-src="img/37.jpg"></div>
+					</section>
+
+					<section id="p-38" class="panel" style="height:180%;">
+						<div class="BG_W" style="height:180%;"></div>
+						<div style="width:50%; float:right; ">
+							<div class="sourcehansans-tc-regular" style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
+								<p>
+								<p>回家前，阿昌打電話給太太，說晚飯可能趕不上了，想去以前住過的單身工人宿舍看一看。民國60幾年，阿昌住進來時還是全新的，但現在牆壁都剝落了，長滿壁癌。宿舍兩人一間，住起來蠻寬敞，高廠為了照顧工人，餐廳常加菜，炒豬肝、熬魚湯。後來什麼大魚大肉沒吃過，但記憶裡，那是阿昌喝過最鮮美的魚湯。
+								<p>阿昌遇到舍監，居然還記得他，叫得出他年輕時代的小名，40幾年的歲月彷彿就在瞬間停滯，阿昌眼眶濕了。他還想到娟娟，後來嫁給一個男工，就再無聯絡了。娟娟以前常來樓下，叫阿昌的小名，阿昌開窗就能看見她的身影，婷婷玉立，讓阿昌馬上飛奔下去。</p>
+								<p>阿昌想起附近以前是保警宿舍，煉油廠曾經是國防重工業，有上百個保警駐紮於此，如今早已人去樓空。</p>
+							</div>
+							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 60px; text-align:left;">
+								<ul class="bxslider">
+								  <li><img src="img/slider/356.jpg" title="高廠員工宿舍區的幼兒園。(余志偉攝/報導者)" /></li>
+								  <li><img src="img/slider/382.jpg" title="高廠員工宿舍區的殯儀館遺址，以前高廠員工福利好，生老病死各項設施一應俱全。(余志偉攝/報導者)" /></li>
+								</ul>
+							</div>
+						</div>
+					</section>
+
+					<section id="p-39" class="panel">
+						<div class="b-lazy BG" data-src="img/39.jpg"></div>
+					</section>
+					<div id="box19" class="dialogue FR shadow-3px sourcehansans-tc-regular">
+						<span class="fold"></span>
+						<p>高廠全盛時期，從幼稚園到殯儀館一應俱全。多年後，宿舍旁的殯儀館在前幾個月被檢舉而停業。</p>
+						<p>從幼兒紅撲撲的臉蛋，到停屍間裡冰冷的遺體，路程只有十分鐘，都在高廠裡。</p>
+					</div>
+
+					<section id="p-40" class="panel">
+						<div id="p40-2" class="b-lazy F_IMG" data-src="img/40-2.jpg"></div>
+						<div id="p40-1" class="b-lazy F_IMG" data-src="img/40-1.jpg"></div>
 					</section>
 
 					<a id="p-41"></a>
@@ -475,7 +754,7 @@
 
 					</style>
 					<!-- Footer -->
-					<section id="footer" class="footer" style="position:relative; height:255px; background-color:#75777a;  text-align:left;">
+					<section id="footer" class="footer" style="position:relative; height:255px; background-color:#75777a; text-align:left;">
 						<div class="credit">
 							<div class="credit-item">
 								<div class="credit-bar"></div>
@@ -535,31 +814,36 @@
 
 					<script>
 						$(function () { // wait for document ready
-							var myScroll = new IScroll('#wrapper',
-								{
-									// don't scroll horizontal
-									scrollX: false,
-									// but do scroll vertical
-									scrollY: true,
-									// show scrollbars
-									scrollbars: true,
-									// deactivating -webkit-transform because pin wouldn't work because of a webkit bug: https://code.google.com/p/chromium/issues/detail?id=20574
-									// if you dont use pinning, keep "useTransform" set to true, as it is far better in terms of performance.
-									useTransform: false,
-									// deativate css-transition to force requestAnimationFrame (implicit with probeType 3)
-									useTransition: true
-								}
-							);
+
+							/*
+							 *  iScroll
+							 */
+							var myScroll = new IScroll('#wrapper',{
+								scrollX: false,
+								scrollY: true,
+								scrollbars: true,
+								useTransform: false,
+								useTransition: true
+							});
+
+							/*
+							 *  Lazy load
+							 */
 							var bLazy = new Blazy();
 
+							/*
+							 *  Scrollify
+							 */
 							// $.scrollify({
 							// 	section : "section",
 							// });
 
- 
+							/*
+							 *  Scroller HACK
+							 */
 					        var $window = $(window);
-					        var scrollTime = 1.2;
-					        var scrollDistance = 70;
+					        var scrollTime = 0.6;
+					        var scrollDistance = 180;
 
 					        $window.on("mousewheel DOMMouseScroll", function(event){
 					            event.preventDefault(); 
@@ -573,10 +857,93 @@
 					                });
 					        });
 
+							/*
+							 *  Slider
+							 */
 							$('.bxslider').bxSlider({
 								captions: true
 							});
+
+							/*
+							 *  Panorama Img
+							 */
+							var $panorama = $('.panorama');
+							var left = $panorama.offset().left;
+							var width = $panorama.width();
+							var panoOffset = 0;
+							$('.panorama').mousemove(function (e) {
+								var offset = e.pageX - left;
+								var percentage = offset / width * 100;
+								console.log("offset: "+ offset);
+								console.log("percentage: "+ percentage);
+								$panorama.css('background-position', percentage + '% 0');
+							});
+
+							/*
+							 *  Video Scale and Center Resize
+							 */
+							function recalculateFills() {
+
+								//get pixel size of browser window.
+								var browserHeight = Math.round($(window).height());
+						    	var browserWidth = Math.round($(window).width());
+								
+								
+								//jquery all items on page with fill tag
+								var fills = $('video');
+								
+								
+								//for each fill, recalculate size and position and apply using jQuery
+								fills.each(function () {
+									
+								//height of element. not neccessarily video
+						    	var videoHeight = $(this).height();
+						    	var videoWidth = $(this).width();
+
+
+								//calculate new size
+						    	var new_size = full_bleed(browserWidth, browserHeight, videoWidth, videoHeight);
+
+								//distance from top and left is half of the difference between the browser width and the size of the element
+						    	$(this)
+						    		.width(new_size.width)
+						    		.height(new_size.height)
+									.css("margin-left", ((browserWidth - new_size.width)/2))
+									.css("margin-top", ((browserHeight - new_size.height)/2));
+									
+								});
+							}
+							function full_bleed(boxWidth, boxHeight, imgWidth, imgHeight) {
+
+								// Calculate new height and width...
+								var initW = imgWidth;
+								var initH = imgHeight;
+								var ratio = initH / initW;
+
+								imgWidth = boxWidth;
+								imgHeight = boxWidth * ratio;
+
+								// If the video is not the right height, then make it so...     
+								
+								if(imgHeight < boxHeight){
+								    imgHeight = boxHeight;
+								    imgWidth = imgHeight / ratio;
+								}
+								
+								
+								//  Return new size for video
+								return {
+								    width: imgWidth,
+								    height: imgHeight
+								};
+							}
+							recalculateFills();
+						    $(window).resize(function() {
+								recalculateFills();
+						    });
+
 						});
+
 					</script>
 					<script src="js/screen.js"></script>
 				</section>
