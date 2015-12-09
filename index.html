@@ -138,6 +138,20 @@
 		  transform: scale(0.8);
 		}
 
+		.home_0 a {
+			color: #fff;
+			text-decoration: none;
+		}
+
+		.navi_0 a{
+			color: #000;
+		}
+
+		video {
+			width: auto    !important;
+			height: 100%   !important;
+		}
+
 	</style>
 
 	
@@ -157,7 +171,7 @@
 	<!-- Header and Navigation -->
 	<div style="position:fixed; top:8px; left:45px; z-index:10;">
 		<div class="home_0 shadow" style="background-color: #000; color:white; text-align:center; line-height:30px; width:80px; height:30px; font-size:15px; letter-spacing: 0.3em; display:inline-block;">
-			<span style="margin-right:-0.3em;">報導者</span>
+			<span style="margin-right:-0.3em;"><a href="https://www.twreporter.org">報導者</a></span>
 		</div>
 
 		<div class="navi_0 shadow" style="background-color: #fff; color:grey; text-align:center; line-height:30px; width:285px; height:30px; font-size:15px; letter-spacing: 9px; display:inline-block; font-family:'PT Serif Medium';">
@@ -247,21 +261,19 @@
 					<section class="panel">
 						<div class="b-lazy BG" data-src="img/2.jpg"></div>
 					</section>
-					<div id="box1" class="dialogue FR shadow-3px" style="position:fixed;">
+					<div id="box1" class="dialogue FR shadow-3px" >
 						<span class="fold"></span>
 						<p class="sourcehansans-tc-regular">阿昌和往常一樣，早上五點半起來，燒好一壺熱水，泡好麥片，他下意識地瞄了瞄日曆上的日期，10月30號，在半年以前，他已經做了記號。</p>
 					</div>
 
-					<a id="p-3"></a>
-					<section class="panel">
+					<section id="p-3" class="panel">
 						<div class="b-lazy BG" data-src="img/map.png"></div>
 					</section>
 
-					<a id="p-4"></a>
-					<section class="panel">
-						<div style="position:absolute; width:100%; height:100vh; background-color: #000;"></div>
-						<div style="position:absolute; z-index:2;">
-							<video id="bgvid" width="100%" height="100%" autoplay>
+					<section id="p-4" class="panel" style="height:100%;overflow:hidden;">
+						<div style="position:absolute; width:100%; height:100%; background-color: #000; overflow:hidden;"></div>
+						<div style="position:absolute;">
+							<video id="bgvid" style="transform: scale(1.2);">
 								<source src="video/walkin.mp4" type="video/mp4">
 							</video>
 						</div>
@@ -375,43 +387,29 @@
 						</div>
 					</section>
 
-					<a id="p-14"></a>
-					<div id="trigger7"></div>
-					<section class="panel">
-						<div class="b-lazy" data-src="img/14.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+					<section id="p-14" class="panel">
+						<div id="p14-2" class="b-lazy" data-src="img/14-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div id="p14-1" class="b-lazy" data-src="img/14.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
 					</section>
 
-					<a id="p-14-2"></a>
-					<div id="trigger7-e"></div>
-					<section class="panel">
-						<div class="b-lazy" data-src="img/14-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-					</section>
 
 					<div id="box7" class="dialogue FL shadow-3px" style="position:fixed;">
 						<span class="fold"></span>
 						<p class="sourcehansans-tc-regular">民國60年代，他雲林鄉下的家還在燒柴，廠裡就有動力工廠，有巨大的鍋爐，將水暖化成蒸餾水，再提煉成實驗室所用的純水，以供煉油廠裡的精密機械使用。</p>
 					</div>
 
-					<a id="p-15"></a>
-					<div id="trigger8"></div>
-					<section class="panel">
-						<div class="b-lazy" data-src="img/15.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+					<section id="p-15" class="panel" style="height:100%;">
+						<div id="p15-2" class="b-lazy" data-src="img/15-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div id="p15-1" class="b-lazy" data-src="img/15.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
 					</section>
-
-					<a id="p-15-2"></a>
-					<div id="trigger8-e"></div>
-					<section class="panel">
-						<div class="b-lazy" data-src="img/15-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
-					</section>
-
 					<div id="box8" class="dialogue FL shadow-3px" style="position:fixed;">
 						<span class="fold"></span>
 						<p class="sourcehansans-tc-regular">那幾乎是最好的青春年代，高廠裡的一切都讓阿昌大開眼界。</p>
 					</div>
 
 					<section id="p-16" class="panel" style="height:100%;">
-						<div id="p16-1" class="b-lazy" data-src="img/16.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
 						<div id="p16-2" class="b-lazy" data-src="img/16-2.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
+						<div id="p16-1" class="b-lazy" data-src="img/16.jpg" style="position:absolute; width:100%; height:100vh; background-size:cover;"></div>
 					</section>
 
 					<!-- 17_ML_section4 -->
@@ -561,9 +559,9 @@
  
 					        var $window = $(window);
 					        var scrollTime = 1.2;
-					        var scrollDistance = 185;
+					        var scrollDistance = 70;
 
-					        /*$window.on("mousewheel DOMMouseScroll", function(event){
+					        $window.on("mousewheel DOMMouseScroll", function(event){
 					            event.preventDefault(); 
 					            var delta = event.originalEvent.wheelDelta/120 || -event.originalEvent.detail/3;
 					            var scrollTop = $window.scrollTop();
@@ -573,7 +571,7 @@
 					                    ease: Power1.easeOut,
 					                    overwrite: 4                        
 					                });
-					        });*/
+					        });
 
 							$('.bxslider').bxSlider({
 								captions: true
