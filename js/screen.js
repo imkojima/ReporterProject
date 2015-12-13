@@ -21,7 +21,7 @@ $(function () { // wait for document ready
 
 	// change behaviour of controller to animate scroll instead of jump
 	controller.scrollTo(function (newpos) {
-		TweenMax.to(window, 1, {scrollTo: {y: newpos}});
+		TweenLite.to(window, 1, {scrollTo: {y: newpos}});
 	});
 
 	/*
@@ -42,56 +42,51 @@ $(function () { // wait for document ready
 		}
 	});
 
-	// get all slides
-	var slides = document.querySelectorAll("section.panel");
-
-	// create scene for every slide
-	for (var i=0; i<slides.length ; i++) {
-		if(i==4) continue;
-		if(i==12) continue;
-		//p17
-		if(i==17) continue;
-		//p17-2
-		if(i==18) continue;
-		//p21
-		if(i==22) continue;
-		//p25
-		if(i==26) continue;
-		//p28
-		if(i==29) continue;
-		//p31
-		if(i==32) continue;
-		//p38
-		if(i==39) continue;
-
-		if(i==slides.length-1) continue;
-		if(i==slides.length-2) continue;
-		new ScrollMagic.Scene({
-				triggerElement: slides[i]
-			})
-			.setPin(slides[i], {pushFollowers: true})
-			.addTo(controller);
-	}
-
-	/*
-	 * Page 1
-	 */
-		new ScrollMagic.Scene({
-			triggerElement: slides[0]
-		})
-		.addTo(controller);
+	var sectionName, sceneHeight, boxName;
 
 	/*
 	 * Page 2
 	 */
-	 	TweenMax.to("#box1", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: slides[1], duration: defaultDuration})
-		.setTween(TweenMax.to("#box1", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box1"}) // add indicators (requires plugin)
+	 	sectionName = '#p-2';
+		sceneHeight = $(sectionName).innerHeight();
+		boxName = '#box1';
+	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: 0})
+		.setTween(TweenLite.to(boxName, 1, {y: -0.5*windowHeight, transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: sceneHeight * 0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+2*$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+
+		// move out
+		new ScrollMagic.Scene({
+			triggerElement: sectionName, duration: 0.5*sceneHeight
+		})
+		.setPin(sectionName, {pushFollowers: false})
+		//.addIndicators({name:"scene p-6"})
 		.addTo(controller);
 
 	/*
-	 * Page 3 
+	 * Page 3
+	 */
+	 	sectionName = '#p-3';
+		sceneHeight = $(sectionName).innerHeight();
+
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: 0})
+		.setTween(TweenLite.to(sectionName+'-bg', 1, {css:{scale: 1.1}} ))
+		//.addIndicators({name:"scene p-6"})
+		.addTo(controller);
+
+		// move out
+		new ScrollMagic.Scene({
+			triggerElement: sectionName, duration: 0.5*sceneHeight
+		})
+		.setPin(sectionName, {pushFollowers: false})
+		//.addIndicators({name:"scene p-6"})
+		.addTo(controller);
+
+	/*
+	 * Page 4
 	 */
 		new ScrollMagic.Scene({
 			triggerElement: "#p-4"
@@ -105,7 +100,6 @@ $(function () { // wait for document ready
 		.on("leave", function () {
 			$('#bgvid')[0].pause();
 		})
-		// .addIndicators({name:"slides3"}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -115,89 +109,153 @@ $(function () { // wait for document ready
 			triggerElement: "#p-5", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = length;
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1760';
 		})
-		// .addIndicators({name:"#map"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-5", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
 		.addTo(controller);
 
 	/*
 	 * Page 6
 	 */
-	 	TweenMax.to("#box3", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: slides[5], duration: defaultDuration})
-		.setTween(TweenMax.to("#box3", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box3"}) // add indicators (requires plugin)
+	 	sectionName = '#p-6';
+		sceneHeight = $(sectionName).innerHeight();
+		boxName = '#box3';
+	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: 0})
+		.setTween(TweenLite.to(boxName, 1, {y: -0.5*windowHeight, transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: sceneHeight * 0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+2*$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+
+		// move out
+		new ScrollMagic.Scene({
+			triggerElement: sectionName, duration: 0.5*sceneHeight
+		})
+		.setPin(sectionName, {pushFollowers: false})
+		//.addIndicators({name:"scene p-6"})
 		.addTo(controller);
 
 	/*
-	 * Page 7-8
+	 * Page 7
 	 */
 		new ScrollMagic.Scene({
 			triggerElement: "#p-7", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '1760';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1490';
 		})
-		// .addIndicators({name:"#map"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-7", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
 		.addTo(controller);
 
 	/*
 	 * Page 8
 	 */
-	 	TweenMax.to("#box4", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: slides[7], duration: defaultDuration})
-		.setTween(TweenMax.to("#box4", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box4"}) // add indicators (requires plugin)
+	 	sectionName = '#p-8';
+		sceneHeight = $(sectionName).innerHeight();
+
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.1,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-8-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-8-1 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-9', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p9 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.5,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-10-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-10-1 fade"})
+	    .addTo(controller)
+
+	    boxName = '#box4';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-	/*
-	 * Page 9
-	 */
-	 	TweenMax.to("#box5", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: slides[8], duration: defaultDuration})
-		.setTween(TweenMax.to("#box5", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box5"}) // add indicators (requires plugin)
+		boxName = '#box5';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
 	 * Page 11
 	 */
-	 	TweenMax.to("#box6", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: slides[11], duration: defaultDuration})
-		.setTween(TweenMax.to("#box6", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box6"}) // add indicators (requires plugin)
+	 	sectionName = '#p-11';
+		sceneHeight = $(sectionName).innerHeight();
+		boxName = '#box6';
+	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: 0})
+		.setTween(TweenLite.to(boxName, 1, {y: -0.5*windowHeight, transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: sceneHeight * 0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+2*$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+
+		// move out
+		new ScrollMagic.Scene({
+			triggerElement: sectionName, duration: 0.5*sceneHeight
+		})
+		.setPin(sectionName, {pushFollowers: false})
+		//.addIndicators({name:"scene p-11"})
 		.addTo(controller);
 
 	/*
@@ -207,108 +265,108 @@ $(function () { // wait for document ready
 			triggerElement: "#p-12", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '1490';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1300';
 		})
-		// .addIndicators({name:"#map"})
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-13", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 	/*
 	 * Page 14
 	 */
-	 	TweenMax.to("#box7", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-14", duration: defaultDuration})
-		.setTween(TweenMax.to("#box7", 5, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box7"}) // add indicators (requires plugin)
-		.addTo(controller);
-
-		var hideAni = TweenMax.to('#p14-1', 1, {autoAlpha: 0});
+	 	sectionName = '#p-14';
+		sceneHeight = $(sectionName).innerHeight();
 
 		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-14',
+		    triggerElement: sectionName,
 		    duration: 0
 		})
-	    //.setPin('#p-14')
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
 	    .addTo(controller)
 
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-14',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.1,
+		    duration: sceneHeight * 0.20
 		})
-	    .setTween(hideAni)
+	    .setTween(TweenLite.to('#p-14-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-14-1 fade"})
 	    .addTo(controller)
 
-	/*
-	 * Page 15
-	 */
-	 	TweenMax.to("#box8", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-15", duration: defaultDuration})
-		.setTween(TweenMax.to("#box8", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box8"}) // add indicators (requires plugin)
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-14-2', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-14-2 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.5,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-15-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-15-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box7';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-		var hideAni = TweenMax.to('#p15-1', 1, {autoAlpha: 0});
-
-		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: '#p-15',
-		    duration: 0
-		})
-	    //.setPin('#p-15')
-	    .addTo(controller)
-
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: '#p-15',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
-		})
-	    .setTween(hideAni)
-	    .addTo(controller)
+		boxName = '#box8';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
+		.addTo(controller);
 
 	/*
 	 * Page 16
 	 */
-		var hideAni = TweenMax.to('#p16-1', 1, {autoAlpha: 0});
+	 	sectionName = '#p-16';
+		sceneHeight = $(sectionName).innerHeight();
 
 		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-16',
+		    triggerElement: sectionName,
 		    duration: 0
 		})
-	    //.setPin('#p-16')
+	    .setPin(sectionName)
 	    .addTo(controller)
 
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-16',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.2,
+		    duration: sceneHeight * 0.3
 		})
-	    .setTween(hideAni)
+	    .setTween(TweenLite.to('#p-16-1', 1, {autoAlpha: 0}))
 	    .addTo(controller)
 
 	/*
@@ -318,18 +376,17 @@ $(function () { // wait for document ready
 			triggerElement: "#p-17", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '1300';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1170';
 		})
-		// .addIndicators({name:"#map"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -341,67 +398,94 @@ $(function () { // wait for document ready
 			path.style.strokeDashoffset = '1170';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1100';
 		})
-		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-18", duration: 200, offset: -700
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
 		.addTo(controller);
 
 	/*
 	 * Page 18
 	 */
-	 	TweenMax.to("#box9", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-18", duration: defaultDuration})
-		.setTween(TweenMax.to("#box9", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box9"}) // add indicators (requires plugin)
+	 	sectionName = '#p-18';
+		sceneHeight = $(sectionName).innerHeight();
+
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-18-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-18-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box9';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-	/*
-	 * Page 19
-	 */
-	 	TweenMax.to("#box10", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-19", duration: defaultDuration})
-		.setTween(TweenMax.to("#box10", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box10"}) // add indicators (requires plugin)
+		boxName = '#box10';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
 	 * Page 20
 	 */
-	 	TweenMax.to("#box11", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-20", duration: defaultDuration})
-		.setTween(TweenMax.to("#box11", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box11"}) // add indicators (requires plugin)
+
+	 	sectionName = '#p-20';
+		sceneHeight = $(sectionName).innerHeight();
+
+		boxName = '#box11';
+	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: 0})
+		.setTween(TweenLite.to(boxName, 1, {y: -0.5*windowHeight, transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: sceneHeight * 0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+2*$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
 		.addTo(controller);
 
-		var hideAni = TweenMax.to('#p20-1', 1, {autoAlpha: 0});
-
 		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-20',
+		    triggerElement: sectionName,
 		    duration: 0
 		})
-	    //.setPin('#p-16')
-	    .addTo(controller)
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller);
 
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-20',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
 		})
-	    .setTween(hideAni)
-	    .addTo(controller)
+	    .setTween(TweenLite.to('#p-20-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-20-1 fade"})
+	    .addTo(controller);
+
 
 	/*
 	 * Page 21
@@ -410,43 +494,75 @@ $(function () { // wait for document ready
 			triggerElement: "#p-21", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '1100';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '1030';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-21", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
 	/*
 	 * Page 22
 	 */
-	 	TweenMax.to("#box12", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-22", duration: defaultDuration})
-		.setTween(TweenMax.to("#box12", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box12"}) // add indicators (requires plugin)
+	 	sectionName = '#p-22';
+		sceneHeight = $(sectionName).innerHeight();
+
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-22-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-22-1 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.5,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-23-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-23-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box12';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-	/*
-	 * Page 23
-	 */
-	 	TweenMax.to("#box13", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-23", duration: defaultDuration})
-		.setTween(TweenMax.to("#box13", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box13"}) // add indicators (requires plugin)
+		boxName = '#box13';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.2})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -456,36 +572,61 @@ $(function () { // wait for document ready
 			triggerElement: "#p-25", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '1030';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '800';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-25", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
 	/*
 	 * Page 26
 	 */
-	 	TweenMax.to("#box14", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-26", duration: defaultDuration})
-		.setTween(TweenMax.to("#box14", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box14"}) // add indicators (requires plugin)
+	 	sectionName = '#p-26';
+		sceneHeight = $(sectionName).innerHeight();
+
+		boxName = '#box14';
+	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: 0})
+		.setTween(TweenLite.to(boxName, 1, {y: -0.5*windowHeight, transformOrigin:"0% 100%"} ))
+		.addTo(controller);
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight * 0.2, offset: sceneHeight * 0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+2*$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
 		.addTo(controller);
 
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller);
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-26-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-26-1 fade"})
+	    .addTo(controller);
 	/*
 	 * Page 28
 	 */
@@ -493,86 +634,86 @@ $(function () { // wait for document ready
 			triggerElement: "#p-28", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '800';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '670';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-28", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
 	/*
 	 * Page 29
 	 */
-	 	TweenMax.to("#box15", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-29", duration: defaultDuration})
-		.setTween(TweenMax.to("#box15", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box15"}) // add indicators (requires plugin)
-		.addTo(controller);
-
-		var hideAni = TweenMax.to('#p29-1', 1, {autoAlpha: 0});
+	 	sectionName = '#p-29';
+		sceneHeight = $(sectionName).innerHeight();
 
 		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-29',
+		    triggerElement: sectionName,
 		    duration: 0
 		})
-	    //.setPin('#p-16')
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
 	    .addTo(controller)
 
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-29',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.1,
+		    duration: sceneHeight * 0.20
 		})
-	    .setTween(hideAni)
+	    .setTween(TweenLite.to('#p-29-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-29-1 fade"})
 	    .addTo(controller)
 
-	/*
-	 * Page 30
-	 */
-	 	TweenMax.to("#box16", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-30", duration: defaultDuration})
-		.setTween(TweenMax.to("#box16", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box16"}) // add indicators (requires plugin)
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.3,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-29-2', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-29-2 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.5,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-30-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-30-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box15';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-		var hideAni = TweenMax.to('#p30-1', 1, {autoAlpha: 0});
-
-		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: '#p-30',
-		    duration: 0
-		})
-	    //.setPin('#p-16')
-	    .addTo(controller)
-
-		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: '#p-30',
-		    offset: windowHeight/8,
-		    duration: windowHeight/4
-		})
-	    .setTween(hideAni)
-	    .addTo(controller)
+		boxName = '#box16';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.3})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
+		.addTo(controller);
 
 	/*
 	 * Page 31
@@ -581,13 +722,13 @@ $(function () { // wait for document ready
 			triggerElement: "#p-31", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '670';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 	/*
@@ -597,38 +738,83 @@ $(function () { // wait for document ready
 			triggerElement: "#p-32", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
 			path.style.strokeDashoffset = '610';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-32", duration: 200, offset: 300
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
+		.addTo(controller);
+
+	/*
+	 * Page 33
+	 */
+	 	sectionName = '#p-33';
+		sceneHeight = $(sectionName).innerHeight();
+		// move out
+		new ScrollMagic.Scene({
+			triggerElement: sectionName, duration: sceneHeight*0.5
+		})
+		.setPin(sectionName, {pushFollowers: false})
+		//.addIndicators({name:"scene p-6"})
 		.addTo(controller);
 
 	/*
 	 * Page 35
 	 */
-	 	TweenMax.to("#box17", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-35", duration: defaultDuration})
-		.setTween(TweenMax.to("#box17", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box17"}) // add indicators (requires plugin)
+	 	sectionName = '#p-35';
+		sceneHeight = $(sectionName).innerHeight();
+
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.2,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-35-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-35-1 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.4,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-36-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-36-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box17';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
-	/*
-	 * Page 36
-	 */
-	 	TweenMax.to("#box18", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-36", duration: defaultDuration})
-		.setTween(TweenMax.to("#box18", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box18"}) // add indicators (requires plugin)
+		boxName = '#box18';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -638,43 +824,77 @@ $(function () { // wait for document ready
 			triggerElement: "#p-38", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 1} }))
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 		.on('enter', function(){
 			path.style.transition = path.style.WebkitTransition = 'none';
 			path.style.strokeDasharray = length + ' ' + length;
 			path.style.strokeDashoffset = '610';
 		})
 		.on('leave', function(){
-			path.getBoundingClientRect();
+			//path.getBoundingClientRect();
 			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 3s ease-in-out';
 			path.style.strokeDashoffset = '0';
 		})
-		//.addIndicators({name:"#trigger"})
+		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-38", duration: 200, offset: 600
 		})
-		.setTween(TweenMax.to("#map", 1, {css: {opacity: 0} }))
-		// .addIndicators({name:"#map"})
+		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
+		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
 	/*
 	 * Page 39
 	 */
-	 	TweenMax.to("#box19", 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
-		new ScrollMagic.Scene({triggerElement: "#p-39", duration: defaultDuration})
-		.setTween(TweenMax.to("#box19", 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
-		// .addIndicators({name:"box19"}) // add indicators (requires plugin)
+	 	sectionName = '#p-39';
+		sceneHeight = $(sectionName).innerHeight();
+
+		// scene used to pin the container
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    duration: 0
+		})
+	    .setPin(sectionName)
+	    //.addIndicators({name:"pin "+sectionName})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.2,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-39-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-39-1 fade"})
+	    .addTo(controller)
+
+		new ScrollMagic.Scene({
+		    triggerHook: 0,
+		    triggerElement: sectionName,
+		    offset: sceneHeight * 0.4,
+		    duration: sceneHeight * 0.20
+		})
+	    .setTween(TweenLite.to('#p-40-1', 1, {autoAlpha: 0}))
+	    //.addIndicators({name:"#p-40-1 fade"})
+	    .addTo(controller)
+
+	   	boxName = '#box19';
+	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: sceneHeight, offset: -sceneHeight*0.1})
+		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
 	 * Page 40
 	 */
-		var hideAni = TweenMax.to('#p40-1', 1, {autoAlpha: 0});
+		hideAni = TweenLite.to('#p40-1', 1, {autoAlpha: 0});
 
 		// scene used to pin the container
-		var pinScene = new ScrollMagic.Scene({
+		new ScrollMagic.Scene({
 		    triggerHook: 0,
 		    triggerElement: '#p-40',
 		    duration: 0
@@ -683,7 +903,7 @@ $(function () { // wait for document ready
 	    .addTo(controller)
 
 		// scene used to fade the images
-		var aniScene = new ScrollMagic.Scene({
+		aniScene = new ScrollMagic.Scene({
 		    triggerHook: 0,
 		    triggerElement: '#p-40',
 		    offset: windowHeight/8,
@@ -691,21 +911,5 @@ $(function () { // wait for document ready
 		})
 	    .setTween(hideAni)
 	    .addTo(controller)
-
-	/*
-	 * Page 41
-	 */
-		new ScrollMagic.Scene({
-			triggerElement: slides[slides.length-2]
-		})
-		.addTo(controller);
-
-	/*
-	 * Page  42
-	 */ 
-		new ScrollMagic.Scene({
-			triggerElement: slides[slides.length-1]
-		})
-		.addTo(controller);
 
 });
