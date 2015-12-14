@@ -211,7 +211,7 @@ html[xmlns] .clearfix {
 }
 
 .dialogue {
-	top: 110vh;
+	top: 100%;
 	position: fixed; 
 	width: 410px; 
 	padding: 30px;
