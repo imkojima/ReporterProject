@@ -34,7 +34,7 @@
 	<!-- Header and Navigation -->
 	<div style="position:fixed; top:8px; left:45px; z-index:10;">
 		<div class="home_0 shadow" style="background-color: #000; color:white; text-align:center; line-height:30px; width:80px; height:30px; font-size:15px; letter-spacing: 0.3em; display:inline-block;">
-			<span style="margin-right:-0.3em;"><a href="https://www.twreporter.org">報導者</a></span>
+			<span style="margin-right:-0.3em;"><a href="https://www.twreporter.org/a/refinery-content">報導者</a></span>
 		</div>
 
 		<div class="navi_0 shadow" style="background-color: #fff; color:grey; text-align:center; line-height:30px; width:285px; height:30px; font-size:15px; letter-spacing: 9px; display:inline-block; font-family:'PT Serif Medium';">
@@ -129,7 +129,7 @@
 						<div id="p-3-bg" class="b-lazy BG" data-src="img/map.png"></div>
 					</section>
 
-					<section id="p-4" class="panel" style="height:200%; overflow:hidden;">
+					<section id="p-4" class="panel" style="height:100%; overflow:hidden;">
 						<div style="position:absolute; width:100%; height:120%; background-color: #000; overflow:hidden;"></div>
 						<div class="video-wrapper" style="position:absolute;">
 							<video id="bgvid" style="transform: scale(1.2); width: 100%;">
@@ -163,8 +163,8 @@
 						</div>
 					</section>
 					
-					<section id="p-7" class="panel" style="height:200%;">
-						<div class="BG_W" style="height:200%;"></div>
+					<section id="p-7" class="panel clearfix" style="height:100%;">
+						<div class="BG_W" style="height:100%;"></div>
 						<div style="position:relative; width:50%; clear:both; float:right; line-height:120vh; text-align:left;">
 							<div style="display:inline-block; width:450px; font-size:18px; letter-spacing:0.2em; 	line-height:30px;">
 								<p class="sourcehansans-tc-regular">最後一天特別焦躁，阿昌整個上午盯著觸控螢幕，忙著用無線電確認最後關閉管線的流程。在場裡工作不能抽煙，犯癮的時候他總是走到樓梯間看管線發呆，各種不同顏色的管線像纏繞的蟒蛇，他可以明確指出每條管線的作用，但他知道總有他看不到的東西。</p>
@@ -196,9 +196,9 @@
 						</div>
 					</section>
 
-					<section id="p-12" class="panel" style="height:180%;">
-						<div class="BG_W" style="height:200%;"></div>
-						<div style="width:50%; float:right; ">
+					<section id="p-12" class="panel clearfix" style="height: auto;">
+						<div class="BG_W" style="height: 300%;"></div>
+						<div style="width:50%; float:right; clear:both;">
 							<div style="position:relative; background-color:#CCC;width: calc(100% - 45px); margin-top: 180px; text-align:left;">
 								<ul class="bxslider">
 								  <li><img src="img/slider/166.jpg" title="高廠擁有自己的消防隊，當年的配置裝備甚至可以匹敵地方政府的資源。(攝影／林聰勝)" /></li>
@@ -247,7 +247,7 @@
 					</section>
 
 					<!-- 17_ML_section4 -->
-					<section id="p-17" class="panel" style="height:150%;">
+					<section id="p-17" class="panel clearfix" style="height:auto;">
 						<div class="BG_W" style="height:200%;"></div>
 						<div style="width:50%; float:right; clear:both;">
 							<div class="sourcehansans-tc-regular" style="position:relative; text-align:left; margin-top:180px; width:450px; font-size:18px; letter-spacing:0.2em; line-height:30px;">
@@ -398,7 +398,7 @@
 
 					<section id="p-31" class="panel" style="height:300%;">
 						<div id="workder_wav">
-							<audio loop>
+							<audio>
 								  <source src="video/worker.mp3" type="audio/mpeg">
 							</audio>
 						</div>
@@ -594,13 +594,13 @@
 							/*
 							 *  iScroll
 							 */
-							// new IScroll('#wrapper',{
-							// 	scrollX: false,
-							// 	scrollY: true,
-							// 	scrollbars: true,
-							// 	useTransform: false,
-							// 	useTransition: true
-							// });
+							new IScroll('#wrapper',{
+								scrollX: false,
+								scrollY: true,
+								scrollbars: true,
+								useTransform: false,
+								useTransition: true
+							});
 
 							/*
 							 *  Lazy load

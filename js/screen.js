@@ -88,8 +88,11 @@ $(function () { // wait for document ready
 	/*
 	 * Page 4
 	 */
+	 	var sectionName = '#p-4';
+	 	var sceneHeight = $(sectionName).innerHeight();
+
 		new ScrollMagic.Scene({
-			triggerElement: "#p-4"
+			triggerElement: "#p-4", duration: 0.5*sceneHeight
 		})
 		.setPin("#p-4")
 		.on("enter", function () {
@@ -170,7 +173,7 @@ $(function () { // wait for document ready
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
-			triggerElement: "#p-7", duration: 200, offset: 300
+			triggerElement: "#p-7", duration: 200, offset: 100
 		})
 		.setTween(TweenLite.to("#map", 1, {autoAlpha: 0} ))
 		.addTo(controller);
@@ -181,15 +184,12 @@ $(function () { // wait for document ready
 	 	sectionName = '#p-8';
 		sceneHeight = $(sectionName).innerHeight();
 
-		// scene used to pin the container
+		// move out
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.75*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -234,6 +234,8 @@ $(function () { // wait for document ready
 		.setTween(TweenLite.to(boxName, 1, {y: -2*windowHeight, transformOrigin:"0% 100%"} ))
 		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
+
+
 
 	/*
 	 * Page 11
@@ -286,13 +288,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.75*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -346,12 +346,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.5*sceneHeight
 		})
-	    .setPin(sectionName)
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -400,13 +399,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.5*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -450,13 +447,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.5*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller);
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -499,13 +494,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.66*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -580,13 +573,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.5*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller);
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -627,13 +618,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.75*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -693,7 +682,7 @@ $(function () { // wait for document ready
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
-			triggerElement: sectionName
+			triggerElement: sectionName, duration: sceneHeight
 		})
 		.on('enter', function() {
 			$('audio')[0].play();
@@ -715,7 +704,7 @@ $(function () { // wait for document ready
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 670}}, {css:{strokeDashoffset: 610}}))
 	 	)
-		////.addIndicators({name:"#trigger"})
+		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -746,13 +735,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.66*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -818,13 +805,11 @@ $(function () { // wait for document ready
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: sectionName,
-		    duration: 0
+			triggerElement: sectionName, duration: 0.66*sceneHeight
 		})
-	    .setPin(sectionName)
-	    //.addIndicators({name:"pin "+sectionName})
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
+
 
 		new ScrollMagic.Scene({
 		    triggerHook: 0,
@@ -856,21 +841,23 @@ $(function () { // wait for document ready
 	/*
 	 * Page 40
 	 */
+
+		var sectionName = '#p40';
+		var sceneHeight = $(sectionName).innerHeight();
+
 		hideAni = TweenLite.to('#p40-1', 1, {autoAlpha: 0});
 
 		// scene used to pin the container
 		new ScrollMagic.Scene({
-		    triggerHook: 0,
-		    triggerElement: '#p-40',
-		    duration: 0
+			triggerElement: sectionName, duration: 0.5*sceneHeight
 		})
-	    //.setPin('#p-16')
-	    .addTo(controller)
+		.setPin(sectionName, {pushFollowers: false})
+		.addTo(controller);
 
 		// scene used to fade the images
 		aniScene = new ScrollMagic.Scene({
 		    triggerHook: 0,
-		    triggerElement: '#p-40',
+		    triggerElement: sectionName,
 		    offset: windowHeight/8,
 		    duration: windowHeight/4
 		})
