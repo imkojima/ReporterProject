@@ -53,7 +53,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: windowHeight, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1.25*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 2, {y: -1.5*windowHeight, transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		// move out
@@ -132,7 +132,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1.25*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 2, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		// move out
@@ -186,7 +186,7 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-8-1', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p-8-1 fade"})
+	    //.addindicators({name:"#p-8-1 fade"})
 	    .addTo(controller)
 
 		new ScrollMagic.Scene({
@@ -196,7 +196,7 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-9', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p9 fade"})
+	    //.addindicators({name:"#p9 fade"})
 	    .addTo(controller)
 
 		new ScrollMagic.Scene({
@@ -206,21 +206,21 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-10-1', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p-10-1 fade"})
+	    //.addindicators({name:"#p-10-1 fade"})
 	    .addTo(controller)
 
 	    boxName = '#box4';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		boxName = '#box5';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -233,7 +233,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1.25*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 2, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		// move out
@@ -251,13 +251,13 @@ $(function () { // wait for document ready
 		sceneHeight = $(sectionName).innerHeight();
 
 		new ScrollMagic.Scene({
-			triggerElement: sectionName, duration: 0.25*windowHeight, offset: -0.25*windowHeight
+			triggerElement: sectionName, duration: 0.5*windowHeight, offset: -0.25*windowHeight
 		})
 		.setPin("#map")
 		.setTween(
 			new TimelineLite()
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1490}}, {css:{strokeDashoffset: 1300}}))
+	 		.add(TweenLite.fromTo("#animated_path path", 2, {css:{strokeDashoffset: 1490}}, {css:{strokeDashoffset: 1300}}))
 	 	)
 		.addTo(controller);
 
@@ -290,7 +290,7 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-14-1', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p-14-1 fade"})
+	    //.addindicators({name:"#p-14-1 fade"})
 	    .addTo(controller)
 
 		new ScrollMagic.Scene({
@@ -300,7 +300,7 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-14-2', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p-14-2 fade"})
+	    //.addindicators({name:"#p-14-2 fade"})
 	    .addTo(controller)
 
 		new ScrollMagic.Scene({
@@ -310,21 +310,21 @@ $(function () { // wait for document ready
 		    duration: 0.5*windowHeight
 		})
 	    .setTween(TweenLite.to('#p-15-1', 1, {autoAlpha: 0}))
-	    .addIndicators({name:"#p-15-1 fade"})
+	    //.addindicators({name:"#p-15-1 fade"})
 	    .addTo(controller)
 
 	   	boxName = '#box7';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 2*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 2, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		boxName = '#box8';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 2*windowHeight, offset: 2*windowHeight})
 		.setTween(TweenLite.to(boxName, 2, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -408,14 +408,14 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		boxName = '#box10';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -429,7 +429,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		// scene used to pin the container
@@ -466,7 +466,7 @@ $(function () { // wait for document ready
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1100}}, {css:{strokeDashoffset: 1030}}))
 	 	)
-		////.addIndicators({name:"#trigger"})
+		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -513,14 +513,14 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		boxName = '#box13';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -535,7 +535,7 @@ $(function () { // wait for document ready
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1030}}, {css:{strokeDashoffset: 800}}))
 	 	)
-		////.addIndicators({name:"#trigger"})
+		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -555,7 +555,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 		// scene used to pin the container
@@ -587,7 +587,7 @@ $(function () { // wait for document ready
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 800}}, {css:{strokeDashoffset: 670}}))
 	 	)
-		////.addIndicators({name:"#trigger"})
+		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -645,14 +645,14 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	    boxName = '#box16';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 3*windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -752,14 +752,14 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	    boxName = '#box18';
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: windowHeight})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 	/*
@@ -774,7 +774,7 @@ $(function () { // wait for document ready
 	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
 	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 610}}, {css:{strokeDashoffset: 0}}))
 	 	)
-		////.addIndicators({name:"#trigger"})
+		//.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -821,7 +821,7 @@ $(function () { // wait for document ready
 	 	TweenLite.to(boxName, 1, {y: 0, transformOrigin:"0% 100%"}); 
 		new ScrollMagic.Scene({triggerElement: sectionName, duration: 1*windowHeight, offset: 0})
 		.setTween(TweenLite.to(boxName, 1, {y: -(windowHeight+$(boxName).innerHeight()), transformOrigin:"0% 100%"} ))
-		.addIndicators({name:boxName}) // add indicators (requires plugin)
+		//.addIndicators({name:boxName}) // add indicators (requires plugin)
 		.addTo(controller);
 
 });
