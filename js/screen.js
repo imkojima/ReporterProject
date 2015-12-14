@@ -105,21 +105,26 @@ $(function () { // wait for document ready
 	/*
 	 * Page 5 - 6
 	 */
+
 		new ScrollMagic.Scene({
 			triggerElement: "#p-5", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = length;
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1760';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: length}}, {css:{strokeDashoffset: 1760}}))
+	 	)
+		// .on('enter', function(){
+		// 	path.style.transition = path.style.WebkitTransition = 'none';
+		// 	path.style.strokeDasharray = length + ' ' + length;
+		// 	path.style.strokeDashoffset = length;
+		// })
+		// .on('leave', function(){
+		// 	//path.getBoundingClientRect();
+		// 	path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
+		// 	path.style.strokeDashoffset = '1760';
+		// })
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -157,17 +162,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-7", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1760';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1490';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1760}}, {css:{strokeDashoffset: 1490}}))
+	 	)
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -265,17 +264,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-12", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1490';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1300';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1490}}, {css:{strokeDashoffset: 1300}}))
+	 	)
 		//.addIndicators({name:"#map"})
 		.addTo(controller);
 
@@ -376,32 +369,21 @@ $(function () { // wait for document ready
 			triggerElement: "#p-17", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1300';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1170';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1300}}, {css:{strokeDashoffset: 1170}}))
+	 	)
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
 			triggerElement: "#p-17-2", duration: 200, offset: 0
 		})
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1170';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1100';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1170}}, {css:{strokeDashoffset: 1100}}))
+	 	)
 		.addTo(controller);
 
 		new ScrollMagic.Scene({
@@ -494,17 +476,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-21", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1100';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '1030';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1100}}, {css:{strokeDashoffset: 1030}}))
+	 	)
 		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
@@ -572,17 +548,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-25", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '1030';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '800';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 1030}}, {css:{strokeDashoffset: 800}}))
+	 	)
 		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
@@ -634,17 +604,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-28", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '800';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '670';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 800}}, {css:{strokeDashoffset: 670}}))
+	 	)
 		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
@@ -718,17 +682,25 @@ $(function () { // wait for document ready
 	/*
 	 * Page 31
 	 */
+	 	var sectionName = '#p-31';
+	 	var sceneHeight = $(sectionName).innerHeight();
+
 		new ScrollMagic.Scene({
-			triggerElement: "#p-31", duration: 200, offset: -200
+			triggerElement: sectionName, duration: 200, offset: -200
 		})
 		.setPin("#map")
 		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '670';
+		.addTo(controller);
+
+		new ScrollMagic.Scene({
+			triggerElement: sectionName
 		})
-		////.addIndicators({name:"#trigger"})
+		.on('enter', function() {
+			$('audio')[0].play();
+		})
+		.on('leave', function() {
+			$('audio')[0].pause();
+		})
 		.addTo(controller);
 
 	/*
@@ -738,12 +710,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-32", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 2s ease-in-out';
-			path.style.strokeDashoffset = '610';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 670}}, {css:{strokeDashoffset: 610}}))
+	 	)
 		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 
@@ -824,17 +795,11 @@ $(function () { // wait for document ready
 			triggerElement: "#p-38", duration: 200, offset: -200
 		})
 		.setPin("#map")
-		.setTween(TweenLite.to("#map", 1, {autoAlpha: 1} ))
-		.on('enter', function(){
-			path.style.transition = path.style.WebkitTransition = 'none';
-			path.style.strokeDasharray = length + ' ' + length;
-			path.style.strokeDashoffset = '610';
-		})
-		.on('leave', function(){
-			//path.getBoundingClientRect();
-			path.style.transition = path.style.WebkitTransition = 'stroke-dashoffset 3s ease-in-out';
-			path.style.strokeDashoffset = '0';
-		})
+		.setTween(
+			new TimelineLite()
+	 		.add(TweenLite.to("#map", 1, {autoAlpha: 1} ))
+	 		.add(TweenLite.fromTo("#animated_path path", 1, {css:{strokeDashoffset: 610}}, {css:{strokeDashoffset: 0}}))
+	 	)
 		////.addIndicators({name:"#trigger"})
 		.addTo(controller);
 

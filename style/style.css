@@ -290,3 +290,9 @@ svg {
 	z-index: 3;
 	transition: background-position 0.1s linear;
 }
+
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
