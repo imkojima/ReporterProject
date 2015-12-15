@@ -80,6 +80,12 @@ $(function () { // wait for document ready
 		)
 		.addTo(controller);
 
+		boxName = '#box2';
+	 	TweenLite.to(boxName, 1,  {opacity: 0} ); 
+		new ScrollMagic.Scene({triggerElement: sectionName, duration: 0.5*windowHeight, offset: 0.25*windowHeight})
+		.setTween(TweenLite.to(boxName, 1, {autoAlpha: 1} ))
+		.addTo(controller);
+
 		// move out
 		new ScrollMagic.Scene({
 			triggerElement: sectionName, duration: 2*windowHeight-1
